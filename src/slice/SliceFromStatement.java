@@ -95,9 +95,9 @@ public class SliceFromStatement{
         System.out.println("done");
         System.out.println(CallGraphStats.getStats(cg));
                
-		final PointerAnalysis<InstanceKey> pa = builder.getPointerAnalysis();//zyt£∫PointerAnalysis « ≤√¥¿‡£ø
+		final PointerAnalysis<InstanceKey> pa = builder.getPointerAnalysis();
 		ModRef<InstanceKey> modRef = ModRef.make(); 
-		SDG<?> sdg = new SDG<>(cg, pa, modRef, DataDependenceOptions.NO_HEAP, ControlDependenceOptions.NO_EXCEPTIONAL_EDGES, null);
+		SDG<?> sdg = new SDG<>(cg, pa, modRef, DataDependenceOptions.FULL, ControlDependenceOptions.NO_EXCEPTIONAL_EDGES, null);
 		CGNode nc = null;
 		Collection<Statement> collection = null;
 		CGNode n = FindMethod.findMethod(cg, callname, callmethodClass);
