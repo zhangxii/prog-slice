@@ -74,7 +74,8 @@ public class SliceFromStatement{
 		//forward slice
 //		System.out.println("-------computeForwardSlice-------");
 //		collection = Slicer.computeForwardSlice(sdg, statement);		
-//		dumpSlice(collection, callname); 
+//		dumpSlice(collection, callname);               
+     
 	}
 	
 	public static void sliceFromReturn(String jar,String callname, String callmethodClass) throws IOException, ClassHierarchyException, IllegalArgumentException, InvalidClassFileException, CancelException {
@@ -96,7 +97,7 @@ public class SliceFromStatement{
                
 		final PointerAnalysis<InstanceKey> pa = builder.getPointerAnalysis();
 		ModRef<InstanceKey> modRef = ModRef.make(); 
-		SDG<?> sdg = new SDG<>(cg, pa, modRef, DataDependenceOptions.FULL, ControlDependenceOptions.NO_EXCEPTIONAL_EDGES, null);
+		SDG<?> sdg = new SDG<>(cg, pa, modRef, DataDependenceOptions.NO_HEAP, ControlDependenceOptions.NO_EXCEPTIONAL_EDGES, null);
 		CGNode nc = null;
 		Collection<Statement> collection = null;
 		CGNode n = FindMethod.findMethod(cg, callname, callmethodClass);
@@ -122,6 +123,7 @@ public class SliceFromStatement{
 	    	  CGNode node = s.getNode();
 	    	  //come from wala net:
 	    	  //http://wala.sourceforge.net/wiki/index.php/UserGuide:MappingToSourceCode#From_Slices_to_source_line_numbers
+
 	    	  if (s.getKind() == Statement.Kind.NORMAL) { 
 	    		   int bcIndex, instructionIndex = ((NormalStatement) s).getInstructionIndex();
 	    		   IMethod met = s.getNode().getMethod();	        	  
