@@ -1,2 +1,4 @@
 # prog-slice
-Using wala to slice the java file.
+
+
+You can use the `src/slice/SliceMain.java` to slice a java file.
